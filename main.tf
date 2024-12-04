@@ -17,8 +17,14 @@ resource "azurerm_storage_account" "main" {
   account_replication_type = var.storage_replication_type
 }
 
-resource "azurerm_storage_container" "main" {
-  name                  = var.storage_container_name
+resource "azurerm_storage_container" "tfstate" {
+  name                  = var.state_container_name
+  storage_account_id    = azurerm_storage_account.main.id
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_container" "tfplan" {
+  name                  = var.plan_container_name
   storage_account_id    = azurerm_storage_account.main.id
   container_access_type = "private"
 }

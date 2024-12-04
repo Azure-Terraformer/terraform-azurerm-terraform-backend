@@ -17,7 +17,11 @@ variable "storage_replication_type" {
   type    = string
   default = "LRS"
 }
-variable "storage_container_name" {
+variable "state_container_name" {
   type    = string
   default = "tfstate"
+}
+variable "plan_container_name" {
+  type    = string
+  default = "tfplan"
 }
