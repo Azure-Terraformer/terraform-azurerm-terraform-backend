@@ -25,3 +25,7 @@ variable "plan_container_name" {
   type    = string
   default = "tfplan"
 }
+variable "tags" {
+  type    = map(string)
+  default = {}
+}

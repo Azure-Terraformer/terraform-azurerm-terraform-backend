@@ -7,6 +7,7 @@ resource "random_string" "main" {
 resource "azurerm_resource_group" "main" {
   name     = "rg-${var.resource_group_prefix}-${random_string.main.result}"
   location = var.location
+  tags     = var.tags
 }
 
 resource "azurerm_storage_account" "main" {
@@ -15,6 +16,7 @@ resource "azurerm_storage_account" "main" {
   location                 = azurerm_resource_group.main.location
   account_tier             = "Standard"
   account_replication_type = var.storage_replication_type
+  tags                     = var.tags
 }
 
 resource "azurerm_storage_container" "tfstate" {
