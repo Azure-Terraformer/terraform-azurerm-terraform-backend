@@ -1,17 +1,17 @@
-resource "random_string" "main" {
+resource "azurerm_resource_group" "main" {
+  name     = "rg-${var.name}"
+  location = var.location
+  tags     = var.tags
+}
+
+resource "random_string" "storage_suffix" {
   length  = var.random_length
   upper   = false
   special = false
 }
 
-resource "azurerm_resource_group" "main" {
-  name     = "rg-${var.resource_group_prefix}-${random_string.main.result}"
-  location = var.location
-  tags     = var.tags
-}
-
 resource "azurerm_storage_account" "main" {
-  name                     = "st${var.storage_prefix}${random_string.main.result}"
+  name                     = "st${var.storage_prefix}${random_string.storage_suffix.result}"
   resource_group_name      = azurerm_resource_group.main.name
   location                 = azurerm_resource_group.main.location
   account_tier             = "Standard"

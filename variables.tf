@@ -1,9 +1,8 @@
 variable "location" {
   type = string
 }
-variable "resource_group_prefix" {
-  type    = string
-  default = "tf"
+variable "name" {
+  type = string
 }
 variable "storage_prefix" {
   type    = string
